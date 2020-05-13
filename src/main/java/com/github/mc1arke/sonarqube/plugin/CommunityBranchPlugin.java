@@ -20,6 +20,7 @@ package com.github.mc1arke.sonarqube.plugin;
 
 import com.github.mc1arke.sonarqube.plugin.ce.CommunityBranchEditionProvider;
 import com.github.mc1arke.sonarqube.plugin.ce.CommunityReportAnalysisComponentProvider;
+import com.github.mc1arke.sonarqube.plugin.ce.StaticWorkerCountProvider;
 import com.github.mc1arke.sonarqube.plugin.scanner.CommunityBranchConfigurationLoader;
 import com.github.mc1arke.sonarqube.plugin.scanner.CommunityBranchParamsValidator;
 import com.github.mc1arke.sonarqube.plugin.scanner.CommunityProjectBranchesLoader;
@@ -69,7 +70,7 @@ public class CommunityBranchPlugin implements Plugin, CoreExtension {
         if (SonarQubeSide.COMPUTE_ENGINE == context.getRuntime().getSonarQubeSide()) {
             context.addExtensions(CommunityReportAnalysisComponentProvider.class, CommunityBranchEditionProvider.class);
         } else if (SonarQubeSide.SERVER == context.getRuntime().getSonarQubeSide()) {
-            context.addExtensions(CommunityBranchFeatureExtension.class, CommunityBranchSupportDelegate.class,
+            context.addExtensions(StaticWorkerCountProvider.class, CommunityBranchFeatureExtension.class, CommunityBranchSupportDelegate.class,
 
                                   AlmSettingsWs.class, CountBindingAction.class, DeleteAction.class,
                                   DeleteBindingAction.class, ListAction.class, ListDefinitionsAction.class,
